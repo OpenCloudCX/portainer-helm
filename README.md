@@ -1,4 +1,7 @@
 # Deploy Portainer using Helm Chart
+helm install portainer https://opencloudcx.github.io/portainer-helm/portainer-beta-1.0.0.tgz
+
+
 
 Before proceeding, ensure to create a namespace in advance.
 For instance:
