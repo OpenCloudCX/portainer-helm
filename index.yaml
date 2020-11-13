@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  portainer:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2020-11-13T14:01:44.632259057-05:00"
+    description: Helm chart used to deploy the Portainer for Kubernetes version.
+    digest: 587836da7ce41d8500e5cbff0c5d91591f48dfdf7b09b7e28fe66d311b53159c
+    name: portainer
+    type: application
+    urls:
+    - https://opencloudcx.github.io/portainer-helm/portainer-1.0.0.tgz
+    version: 1.0.0
+generated: "2020-11-13T14:01:44.631668894-05:00"
