@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ include "portainer.fullname" . }}
-  namespace: {{ .Release.Namespace }}
+  namespace: opencloudcx
   labels:
     io.portainer.kubernetes.application.stack: portainer
     {{- include "portainer.labels" . | nindent 4 }}
