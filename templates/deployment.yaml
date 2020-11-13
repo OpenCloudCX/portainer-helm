@@ -23,7 +23,7 @@ spec:
       serviceAccountName: {{ include "portainer.serviceAccountName" . }}
       containers:
         - name: {{ .Chart.Name }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          image: portainerci/portainer:develop
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
