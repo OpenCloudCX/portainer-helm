@@ -1,34 +1,47 @@
+# Source: portainer/templates/deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "portainer.fullname" . }}
+  name: portainer
   namespace: opencloudcx
   labels:
     io.portainer.kubernetes.application.stack: portainer
-    {{- include "portainer.labels" . | nindent 4 }}
+    app.kubernetes.io/name: portainer
+    app.kubernetes.io/instance: portainer
+    app.kubernetes.io/version: "2.0.0"
 spec:
-  replicas: {{ .Values.replicaCount }}
+  replicas: 1
+  strategy:
+    type: "Recreate"
   selector:
     matchLabels:
-      {{- include "portainer.selectorLabels" . | nindent 6 }}
+      app.kubernetes.io/name: portainer
+      app.kubernetes.io/instance: portainer
   template:
     metadata:
       labels:
-        {{- include "portainer.selectorLabels" . | nindent 8 }}
+        app.kubernetes.io/name: portainer
+        app.kubernetes.io/instance: portainer
     spec:
-    {{- with .Values.imagePullSecrets }}
-      imagePullSecrets:
-        {{- toYaml . | nindent 8 }}
-    {{- end }}
-      serviceAccountName: {{ include "portainer.serviceAccountName" . }}
+      serviceAccountName: portainer-sa-clusteradmin
+      volumes:
+         - name: "data"
+           persistentVolumeClaim:
+             claimName: portainer      
       containers:
-        - name: {{ .Chart.Name }}
-          image: portainerci/portainer:develop
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
+        - name: portainer
+          image: "portainer/portainer-ce:latest"
+          imagePullPolicy: IfNotPresent          
+          volumeMounts:
+            - name: data
+              mountPath: /data
           ports:
             - name: http
               containerPort: 9999
               protocol: TCP
+            - name: tcp-edge
+              containerPort: 8888
+              protocol: TCP              
           livenessProbe:
             httpGet:
               path: /
@@ -38,4 +51,4 @@ spec:
               path: /
               port: 9999
           resources:
-            {{- toYaml .Values.resources | nindent 12 }}
+            {}
