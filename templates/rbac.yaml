@@ -13,5 +13,5 @@ roleRef:
   name: cluster-admin
 subjects:
 - kind: ServiceAccount
-  namespace: opencloudcx
+  namespace: portainer
   name: portainer-sa-clusteradmin
