@@ -9,6 +9,6 @@ entries:
     name: portainer
     type: application
     urls:
-    - https://opencloudcx.github.io/portainer-helm/portainer-1.0.0.tgz
+    - https://github.com/OpenCloudCX/portainer-helm/blob/master/portainer-1.0.0.tgz
     version: 1.0.0
 generated: "2020-11-13T14:01:44.631668894-05:00"
